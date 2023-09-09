@@ -17,7 +17,7 @@ class VerifyEmailService
         if(!isset($this->user)){
             $randomString = Str::random(40);
             //$request= new Request;
-            $baseUrl='http://127.0.0.1:8000/';
+            $baseUrl='new.wordcard.tech/';
             $url=$baseUrl.'/verify'.$randomString;
             //dd($url);
             return $url;
