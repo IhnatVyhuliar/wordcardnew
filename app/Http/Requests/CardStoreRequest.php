@@ -26,7 +26,7 @@ class CardStoreRequest extends FormRequest
             'translation' => ['required', 'max:255'],
             'definition'=>['required', 'max:255'],
             'folder_id'=>['required'],
-            'image'=>['required', 'image', 'mimes:jpg,png,jpeg', 'max:4000', 'dimensions:max_width=1000,max_height=1000']
+            'image'=>['required', 'image', 'mimes:jpg,png,jpeg', 'max:4000']
             
         ];
     }
