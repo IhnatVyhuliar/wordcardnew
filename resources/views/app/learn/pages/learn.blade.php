@@ -43,7 +43,7 @@
              </div>
          </div>
          @if ($result['success'])
-            <div class="card text-center max-lg:w-5/12 w-12/12 max-sm:w-full  sm:p-10 h-20 mt-4 border-4 border-green-600 rounded-lg  dark:border-gray-700" >
+            <div class="card text-center max-lg:w-5/12 w-12/12 max-sm:w-full  sm:p-10 h-20 mt-4 border-4 border-green-600 rounded-lg" >
 
                 <button>
                     {{$result['input_value']}}
@@ -52,7 +52,7 @@
                 
             </div>
          @else  
-         <div class="card text-center w-12/12 sm:w-full  sm:p-10 h-20 mt-4 border-4 border-red-600 rounded-lg   dark:border-gray-700"  >
+         <div class="card text-center w-12/12 sm:w-full  sm:p-10 h-20 mt-4 border-4 border-red-600 rounded-lg"  >
 
             <button>
                 {{$result['input_value']}}
