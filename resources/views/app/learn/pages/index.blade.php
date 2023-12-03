@@ -3,7 +3,7 @@
 @section('folder_cards')
 <div class="container">
     <div class="mb-2">
-        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Choose type</h5>
+        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">Choose type</h5>
     </div>
     
     <div class="container flex flex-wrap ">
