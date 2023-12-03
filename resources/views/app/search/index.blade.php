@@ -3,20 +3,20 @@
 @section('folder_cards')
 <div class="flex flex-col">
   <form action="{{route('search.find')}}" method="get">
-    <div class="relative  flex w-full flex-wrap items-stretch">
+    <div class="flex w-full flex-wrap items-stretch">
       @csrf()
         <input
         type="search"
         id='search'
         name='keyword'
-        class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+        class=" m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
         placeholder="Search"
         aria-label="Search"
         aria-describedby="button-addon1" />
   
       <!--Search button-->
       <button
-        class="relative z-[2] flex items-center rounded-r bg-violet-400 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+        class=" flex items-center rounded-r bg-violet-400 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
         type="submit"
         id="button-addon1"
         data-te-ripple-init
@@ -44,7 +44,7 @@
     @isset($folders)
     
     @foreach ($folders as $folder)
-    <div class="folder_container_main relative rounded-md bg-white shadow-md z-0 p-4 max-h-[470px]  overflow-y-scroll lg:max-h-[470px] md:max-h-[250px] ">
+    <div class="folder_container_main  rounded-md bg-white shadow-md z-0 p-4 max-h-[470px]  overflow-y-scroll lg:max-h-[470px] md:max-h-[250px] ">
         
         <div class="container flex flex-row flex-wrap flex-4 justify-start space-x-4 space-y-4 items-center  overflow-x-hidden">        
         <div class="flex space-x-4 flex-wrap">
@@ -61,6 +61,9 @@
            <div class="explore">
             <a href="{{route('folders.show',$folder->id)}}">
                 <button type="button" class="text-white bg-violet-500 focus:ring-4 hover:bg-violet-700 focus:ring-violet-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Explore</button>
+            </a>
+            <a href="{{route('learn.index',$folder->id)}}">
+                <button type="button" class="text-white bg-violet-500 focus:ring-4 hover:bg-violet-700 focus:ring-violet-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Learn</button>
             </a>
            </div>
            <div class="explore">
@@ -156,55 +159,10 @@
        }
        //buttonElement.style.display = 'none';
    }
-        let keyUpp= function(){
-          
-        let key_txt= this.value;
         
-        if (key_txt!=''){
-          
-            let xhttp = new XMLHttpRequest();
-            let param = 'keyword=' + encodeURIComponent(key_txt);
-            xhttp.onreadystatechange = function() {
-                //alert("Ready state="+this.status);
-                if (this.readyState == 4 && this.status == 200) {
-                    //alert(this.responseText);
-                    let folders=JSON.parse(this.responseText);
-                   // alert(folders.length);
-                   $("list_key").innerHTML='';
-                    for (let i = 0; i < folders.length; i++) {
-                      
-                      let div = document.createElement("div");
-                      //div.classList.add('w-full bg-black-300 rounder-xl');
-                      div.innerHTML=folders[i].name;
-                      div.innerHTML+="   "+folders[i].code;
-                      div.style.width='100%';
-                     // div.style.height='70px';
-                      div.style.textAlign='start';
-                      div.style.padding='10px';
-                      //div.style.background='#a9a9a9';
-                      div.style.borderRadius='10px';
-                      //div.style.border='thick solid #000';
-                      $("list_key").appendChild(div);
-                     // console.log(folders[i].name)
-                      //$("list_key").innerHTML=folders[i].name;
-                    }
-                    
-                }
-            
-            }
-            xhttp.open("GET", 'http://127.0.0.1:8000/api/folders_get');
-            xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhttp.send(param);
-            //alert(key_txt);
-        
-        }
-        else{
-            $("list_key").innerHTML='';
-        }
-    }
 
    
-    $("search").addEventListener("keyup", keyUpp);
+
         //$("search").addEventListener("onsubmit", keyUpp);
       
 

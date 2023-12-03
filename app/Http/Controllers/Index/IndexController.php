@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Folder\FolderController;
 class IndexController extends Controller
 {
-    public function index(){
+    public function Index(){
         $id=auth()->user()->id;
         $folder_class=new FolderController;
         $folders=$folder_class->getinfoByid($id);

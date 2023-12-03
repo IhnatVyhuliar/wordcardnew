@@ -10,10 +10,6 @@ use App\Models\Card;
 use Storage;
 class CardController extends Controller
 {
-    public function index()
-    {
-        //
-    }
 
     /**
      * Display a listing of the resource.
@@ -65,7 +61,7 @@ class CardController extends Controller
      * Display the specified resource.
      * 
      */
-    public function favorite(Request $request)
+    public function Favorite(Request $request)
     {    
         $card=Card::find($request->id);
         if($card->favorite){
@@ -144,5 +140,14 @@ class CardController extends Controller
         $card->delete();
         
         return to_route('dashboard');
+    }
+
+    public static function increaseProcent(Card $card){
+        if ($card->level!=4){
+            //dd($card->level);
+            $card->level=$card->level+1;
+            //dd($card->level);
+            $card->save();
+        }
     }
 }

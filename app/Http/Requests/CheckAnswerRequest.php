@@ -22,8 +22,8 @@ class CheckAnswerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'folder_id'=>'required',
-            'card_id'=>'required',
+            'folder_id'=>'required|numeric',
+            'main_card_id'=>'required|numeric',
             'value'=>'required'
         ];
     }

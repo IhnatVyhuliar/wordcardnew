@@ -24,7 +24,8 @@ class LaunchShowCardsRequest extends FormRequest
         return [
             'type'=>'required|digits:1',
             'number'=>'required|',
-            'range'=>'required'
+            'range'=>'required',
+            'folder_id'=>'required'
         ];
     }
 }

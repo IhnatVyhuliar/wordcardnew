@@ -24,10 +24,7 @@ class FolderController extends Controller
         
     }
 
-    public function index()
-    {
-       
-    }
+ 
 
     /**
      * Show the form for creating a new resource.
@@ -99,7 +96,7 @@ class FolderController extends Controller
     }
     public function edit(Folder $folder)
     {
-       // dd($folder->name);
+       // dd($folder->name);    
        if (!$this->is_owner($folder)){
         return to_route('search.index');
        }
@@ -135,7 +132,7 @@ class FolderController extends Controller
 
     
 
-    public function favorite(Request $request){
+    public function Favorite(Request $request){
 
         
         $folder=Folder::findOrFail($request->id);
@@ -162,5 +159,9 @@ class FolderController extends Controller
             return $this->show($folder);
         }
         
+    }
+
+    public static function getFolderById(int $folder_id){
+        return Folder::find($folder_id);
     }
 }

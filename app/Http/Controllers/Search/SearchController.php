@@ -9,7 +9,7 @@ use App\Models\Folder_follower;
 use DB;
 class SearchController extends Controller
 {
-    public function index(){
+    public function Index(){
         return view('app/search/index');
     }
 

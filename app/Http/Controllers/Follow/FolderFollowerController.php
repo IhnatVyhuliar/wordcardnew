@@ -9,7 +9,7 @@ use App\Models\Folder_follower;
 use App\Models\Folder;
 class FolderFollowerController extends Controller
 {
-    public function follower(Request $request){
+    public function Follower(Request $request){
 
         $request->validate([
             'folder_id' => ['required'],
