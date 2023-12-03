@@ -16,19 +16,18 @@ class VerifyEmailService
     public function create_hash(){
         if(!isset($this->user)){
             $randomString = Str::random(40);
-            //$request= new Request;
-            $baseUrl=__DIR__;
-            $url=$baseUrl.'/verify'.$randomString;
-            //dd($url);
+            $url = url('/verify/' . $randomString);
+            // You can use this $url in your email or wherever you need it.
             return $url;
         }
     }   
 
     public function verify($hash){
-        dd('he');
+
         if(isset($this->user_id)&&isset($this->hash)){
             
             if($hash==$this->hash){
+                dd($hash);
                 if ($this->user->hasVerifiedEmail()) {
                     return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
                 }

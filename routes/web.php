@@ -29,7 +29,7 @@ Route::get('/main', function () {
     return view('welcome');
 })->name('main');
 
-Route::get('/verify{hash}', [VerifyEmailCustomController::class, 'checkHash']);
+Route::get('/verify/{hash}', [VerifyEmailCustomController::class, 'checkHash']);
 
 
 //Route::get('/dashboard', [CardUserController::class, 'index'])->middleware(['auth', 'verified','user'])->name('dashboard');

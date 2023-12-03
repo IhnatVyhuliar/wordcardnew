@@ -43,7 +43,7 @@ class FolderLearnServiceProvider
     public function getAccess(){
         $access=false;
         //dd($this->folder);
-        //dd($this->folder);
+        //dd($this->user_id);
         if($this->folder!=NULL){
             if($this->user_id){
                 $owner=$this->folder->user_id==$this->user_id;

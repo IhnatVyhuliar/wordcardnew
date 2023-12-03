@@ -35,7 +35,12 @@ class ShowCardsController extends Controller
         if(isset($request->folder_id)){
             $this->folder_id=$request->folder_id;
             $learn_service=app('learn_service');
-            $learn_service->setfolder($this->folder_id);
+            if(Auth::user()){
+                $learn_service->setfolder($this->folder_id, Auth::user()->id);
+            }
+            else{
+                $learn_service->setfolder($this->folder_id);
+            }
             $getaccess=$learn_service->getAccess();
             $folder_id=$this->folder_id;
             //dd($getaccess);
@@ -55,13 +60,21 @@ class ShowCardsController extends Controller
         //$arr=[0,1,2,3];
         //dd($arr[0]);
         $learn_service=app('learn_service');
-        $learn_service->setfolder($request->folder_id);
+        if(Auth::user()){
+            $learn_service->setfolder($request->folder_id, Auth::user()->id);
+        }
+        else{
+            $learn_service->setfolder($request->folder_id);
+        }
+
         $getaccess=$learn_service->getAccess();
+
         if($getaccess){
             
-            
+            CacheHelper::Close();
             CacheHelper::storeCache('cur_card', 0);
             //dd(CacheHelper::getVariable('cur_card'));
+            //dd($request->number);
             CacheHelper::storeCache('number',$request->number);
             CacheHelper::storeCache('folder_id',intval($request->folder_id));
             CacheHelper::storeCache('type', intval($request->type));
@@ -80,10 +93,13 @@ class ShowCardsController extends Controller
             $cur_card=intval(CacheHelper::getVariable('cur_card'));
         
             $number=intval(CacheHelper::getVariable('number'));
+            
             $folder_id=intval(CacheHelper::getVariable('folder_id'));
             $type=CacheHelper::getVariable('type');
+            $cur_card++;
             if ($cur_card < $number){
-                $cur_card++;
+                //dd($cur_card);
+                
                 //dd($cur_card);
                 CacheHelper::Forget('cur_card');
                 CacheHelper::storeCache('cur_card', $cur_card);
@@ -94,10 +110,11 @@ class ShowCardsController extends Controller
             else{
                 $arr=CacheHelper::getVariable('check_answer');
                 $percent=0;
+                //dd($arr);
                 $counts = count(array_filter($arr));
                 //dd($counts);
                 
-                $percentage=intval($counts/($number+1)*100);
+                $percentage=intval($counts/($number)*100);
                 
                // dd($percentage);
                 CacheHelper::Close();

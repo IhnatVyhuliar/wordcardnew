@@ -28,7 +28,7 @@ class VerifyEmailCustomController extends Controller
     }
 
     public function checkHash(Request $request){
-        dd($request->hash);
+        //dd($request->hash);
         $url=app('verify_email')->verify($request->hash);
         //dd($url);
         return $url;

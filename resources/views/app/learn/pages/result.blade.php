@@ -6,7 +6,7 @@
 
        <p class="text-2xl">Your result is {{$percentage}}%</p>
        <p>Great job</p>
-        <p>{{$number+1}} out of {{$counts}}</p>
+        <p>{{$counts}} out of {{$number}}</p>
     </div>
     
 
