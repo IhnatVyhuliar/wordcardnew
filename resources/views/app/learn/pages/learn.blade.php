@@ -34,7 +34,7 @@
         </div>
     </div>
     @isset($result)
-    <div class="container z-1 w-[50%] max-lg:w-[92%] h-[60%]  bg-slate-100 border-2 border-grey-300 absolute top-[15%] left-[20%] max-lg:left-[5%]" >
+    <div class="container z-1 w-[50%] max-lg:w-[92%] min-h-[60%]  bg-slate-100 border-2 border-grey-300 absolute top-[15%] left-[20%] max-lg:left-[5%]" >
         <div class="main p-10">
             {{ $cards["main"]->word}}
             <div class="image">
