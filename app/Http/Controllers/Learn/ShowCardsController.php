@@ -110,14 +110,13 @@ class ShowCardsController extends Controller
             }
             else{
                 $arr=CacheHelper::getVariable('check_answer');
+                
                 $percent=0;
-                //dd($arr);
+
                 $counts = count(array_filter($arr));
-                //dd($counts);
+
                 
                 $percentage=intval($counts/($number)*100);
-                
-               // dd($percentage);
                 CacheHelper::Close();
                 return view('app.learn.pages.result', compact('percentage', 'number', 'counts'));
                 
