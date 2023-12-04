@@ -18,10 +18,10 @@ class FolderFollowerController extends Controller
             'page'=>['required']
         ]);
 
-        $folder_foll=Folder_follower::where("folder_id",$request->folder_id)->get();
+        $folder_foll=Folder_follower::where("folder_id", '=', $request->folder_id)->where('user_id', '=', auth()->id())->first();
         $folder_id=$request->folder_id;
-
-        if(!isset($folder_foll[0]->id)){
+       // dd($folder_foll);
+        if(!isset($folder_foll->id)){
 
             Folder_follower::create([
                 'folder_id'=>$request->folder_id,
@@ -29,7 +29,7 @@ class FolderFollowerController extends Controller
             ]);
         }
         else{
-            $folder_destroy=Folder_follower::find($folder_foll[0]->id);
+            $folder_destroy=Folder_follower::find($folder_foll->id);
             $folder_destroy->delete();    
         }
         //dd($request->page);
