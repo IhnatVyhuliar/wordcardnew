@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('search.index')" :active="request()->routeIs('search.index')">
                         {{ __('Search') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('follow.index')" :active="request()->routeIs('follow')">
+                        {{ __('Follow') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -80,6 +83,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('search.index')" :active="request()->routeIs('search')">
                 {{ __('Search') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('follow.index')" :active="request()->routeIs('follow')">
+                {{ __('Follow') }}
             </x-responsive-nav-link>
         </div>
 

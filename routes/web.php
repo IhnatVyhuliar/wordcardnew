@@ -67,7 +67,9 @@ Route::name('learn.')->prefix('learn')->group(function () {
     //Route::resource('/res', ReservationController::class);
 });
 
-
+Route::name('follow.')->middleware('auth', 'user','verified' )->prefix('follow')->group(function (){
+    Route::get('/', [FolderFollowerController::class, 'getFollows'])->name('index');
+});
 
 
 
