@@ -32,6 +32,7 @@ class ShowCardsController extends Controller
     
     public function Index(Request $request)
     {
+        CacheHelper::Close();
         if(isset($request->folder_id)){
             $this->folder_id=$request->folder_id;
             $learn_service=app('learn_service');
@@ -71,7 +72,7 @@ class ShowCardsController extends Controller
 
         if($getaccess){
             
-            CacheHelper::Close();
+            
             CacheHelper::storeCache('cur_card', 0);
             //dd(CacheHelper::getVariable('cur_card'));
             //dd($request->number);
