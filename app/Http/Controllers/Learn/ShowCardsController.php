@@ -51,6 +51,9 @@ class ShowCardsController extends Controller
             
             
             $num_cards=$learn_service->getCardsNum();
+            if ($num_cards%2!=0){
+                $num_cards-=1;
+            }
             
             return view('app.learn.pages.index', compact('num_cards','folder_id'));
         }

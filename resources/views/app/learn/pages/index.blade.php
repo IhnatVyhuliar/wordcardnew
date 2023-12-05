@@ -21,11 +21,11 @@
                 <input type="hidden" name="type" value="1">
                 <div class="flex flex-col space-y-2 p-2 w-80">
                     @if($num_cards%2!=0)
-                    <input type="number" name="number" id="number_cards_in" min="2" step="2" max="{{$num_cards}}" value="{{$num_cards-1}}"  class="block py-2.5 px-0 w-2/4 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                    <input type="number" name="number" id="number_cards_in" min="2" step="2" max="{{$num_cards}}" value="{{$num_cards}}"  class="block py-2.5 px-0 w-2/4 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                     <input type="range" class="w-full" id='number_range' name="range" min="2" max="{{$num_cards}}" step="2" value="{{$num_cards}}" />
                     
                     @else
-                    <input type="number" name="number" id="number_cards_in" min="2" step="2" max="{{$num_cards}}" value="{{$num_cards}}-1"  class="block py-2.5 px-0 w-2/4 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                    <input type="number" name="number" id="number_cards_in" min="2" step="2" max="{{$num_cards}}" value="{{$num_cards}}"  class="block py-2.5 px-0 w-2/4 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                     <input type="range" class="w-full" id='number_range' name="range" min="2" max="{{$num_cards}}" step="2" value="{{$num_cards}}-1" />
                     
                     
