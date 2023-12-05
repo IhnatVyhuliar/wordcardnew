@@ -112,7 +112,11 @@ class FolderController extends Controller
     public function update(FolderStoreRequest $request, Folder $folder)
     {
         if($this->is_owner($folder)){
-            $folder->update($request->validated());
+            $request->validated(); 
+            $folder->name=$request->name;
+            $folder->status=$request->status;
+            $folder->update();
+            
         }
         
         

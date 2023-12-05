@@ -35,8 +35,8 @@
                     <div class="text-sm text-red-400">{{ $message }}</div>
                 @enderror
                   <div class="relative z-0 w-full mb-6 group">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white " for="image">Upload file</label>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 @error('image') border-red-400 @enderror" name="image" id="image" type="file" required>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black " for="image">Upload file</label>
+                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-black focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 @error('image') border-red-400 @enderror" name="image" id="image" type="file" required>
                     <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Image of card</div>
                 </div>
                 @error('image')
