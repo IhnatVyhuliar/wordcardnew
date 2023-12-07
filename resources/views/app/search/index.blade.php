@@ -117,9 +117,7 @@
                     <button id='button_trans{{$card->id}}' onclick="showTranslation('demo_trans{{$card->id}}','button_trans{{$card->id}}')" >Show translation</button>
                     
                 </div>
-                <div class="botton flex justify-end">
-                    <span>{{$card->level * 25}}</span>
-                </div>
+                
     
             </div>
             

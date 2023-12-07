@@ -145,7 +145,7 @@ class CardController extends Controller
     public static function increaseProcent(Card $card){
         if ($card->level!=4){
             //dd($card->level);
-            $card->level=$card->level+1;
+            $card->level=strval(intval($card->level)+1);
             //dd($card->level);
             $card->update();
         }

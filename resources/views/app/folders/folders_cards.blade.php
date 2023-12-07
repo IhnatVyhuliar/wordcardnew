@@ -198,8 +198,9 @@
             
         </div>
         <div class="botton  absolute bottom-2 right-4">
-            
-            <span>{{$card->level * 25}}</span>
+            @if($changes)
+            <span>{{$card->level * 25}}%</span>
+            @endif
         </div>
 
     </div>

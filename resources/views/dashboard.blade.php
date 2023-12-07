@@ -162,7 +162,7 @@
                 
             </div>
             <div class="botton flex justify-end">
-                <span>{{$card->level * 25}}</span>
+                <span>{{$card->level * 25}}%</span>
             </div>
 
         </div>

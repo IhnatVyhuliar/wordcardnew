@@ -56,7 +56,9 @@ class FolderFollowerController extends Controller
                 $cards = $folder->cards()->where('folder_id', $folder->id)->select('word','translation','definition','image', 'id')->get();
                 //dd($cards);
                 $folder['cards']=$cards;
-                $folder['followers']=Folder_follower::groupBy('folder_id')->count();
+
+                //dd(Folder_follower::groupBy('folder_id')->where("folder_id", $folder->id)->count());
+                $folder['followers']=Folder_follower::groupBy('folder_id')->where("folder_id", $folder->id)->count();
                 $folder['follow']=isset($status[0]->id);
                     
                 

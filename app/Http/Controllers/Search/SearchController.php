@@ -39,7 +39,7 @@ class SearchController extends Controller
                 
                 $cards = $folder->cards()->where('folder_id', $folder->id)->select('word','translation','definition','image', 'id')->take(7)->get();
                 $folder['cards']=$cards;
-                $folder['followers']=DB::table('folder_followers')->groupBy('folder_id')->count();
+                $folder['followers']=DB::table('folder_followers')->where('folder_id', $folder->id)->groupBy('folder_id')->count();
                 $folder['follow']=isset($status[0]->id);
                     
                 
