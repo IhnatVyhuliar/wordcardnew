@@ -23,7 +23,7 @@ class VerifyEmailService
     }   
 
     public function verify($hash){
-
+    
         if(isset($this->user_id)&&isset($this->hash)){
             
             if($hash==$this->hash){

@@ -11,7 +11,7 @@ use App\Models\Searchquery;
 class SearchController extends Controller
 {
     public function Index(){
-        $popular_queries=Searchquery::orderByDesc('number')->where('number', '>', 2)->limit(3)->get();
+        $popular_queries=Searchquery::orderByDesc('number')->where('number', '>', 2)->limit(5)->get();
         $base_url=$url = url('/search/find/');
         //dd($popular_queries);
         return view('app/search/index', compact('popular_queries', 'base_url'));
