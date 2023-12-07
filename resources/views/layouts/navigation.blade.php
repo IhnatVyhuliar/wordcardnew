@@ -115,6 +115,12 @@
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
+                    @if(Auth::user()->admin)
+
+                        <x-responsive-nav-link :href="route('profile.users')">
+                            {{ __('Users') }}
+                        </x-responsive-nav-link>
+                    @endif
                 </form>
             </div>
         </div>
