@@ -10,6 +10,7 @@ use App\Http\Controllers\Follow\FolderFollowerController;
 use App\Http\Controllers\Learn\ShowCardsController;
 use App\Http\Controllers\Learn\LearnController;
 use App\Http\Controllers\VerifyEmailCustomController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,6 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'Edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'Update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'Destroy'])->name('profile.destroy');
+    Route::middleware('admin')->get('/users', [ProfileController::class, 'GetUsers'])->name('profile.users');
 });
 
 

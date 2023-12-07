@@ -58,6 +58,11 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
+                            @if(Auth::user()->admin)
+                                <x-dropdown-link :href="route('profile.users')">
+                                    {{ __('Users') }}
+                                </x-dropdown-link>
+                            @endif
                         </form>
                     </x-slot>
                 </x-dropdown>

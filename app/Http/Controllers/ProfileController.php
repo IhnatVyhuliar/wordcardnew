@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -56,5 +57,17 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function GetUsers(){
+        if (Auth::user()->admin){
+            $users=User::limit(50)->get();
+            $count=User::count();
+            
+            return view('app.users.index', compact('users', 'count'));
+        }
+        else{
+            return to_route('dashboard');
+        }
     }
 }

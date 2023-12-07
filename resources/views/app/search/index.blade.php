@@ -36,9 +36,21 @@
     </form>
       
     </div>
-    <div id="list_key">
-          
-    </div>
+    
+        
+        
+        @isset($popular_queries, $base_url)
+
+        <div id="list_key " class="container mt-3 p-4">
+            <ul class="list-disc"><p class="text-lg "><i>Most popular queries</i></p>
+            @foreach($popular_queries as $query)
+                <p><li><i><a href="{{$base_url}}/{{$query->query}}" class=" text-violet-800">{{$query->query}}</a></i></li></p>
+            @endforeach
+            </ul>
+        </div>
+        @endisset
+        
+   
       
     </div>
     @isset($folders)
