@@ -23,7 +23,7 @@
 
     <div class="w-11/12 h-auto m-auto p-4">
         <div class="flex space-x-3 mt-4 space-y-4 flex-wrap">
-            <div class="element w-[50%] max-md:w-[90%]">
+            <div class="element w-[50%] max-md:w-[90%] ml-5">
                 <h2 class="text-5xl">WordCard- your way to learn languages</h2>
                 <a href="{{route('search.index')}}">
                     <button class="bg-violet-600 mt-20 text-white p-3 h-[70px]  w-[200px] rounded-lg max-sm:w-[95%]">Study</button>
