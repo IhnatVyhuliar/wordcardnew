@@ -3,19 +3,8 @@
 @tailwind utilities;
 
 body{
-    overflow-x: hidden;
+    overflow-x: hidden; 
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
-.rotated-half-circle {
-    /* Create the circle */
-    width: 40px;
-    height: 40px;
-    border: 10px solid black;
-    border-radius: 50%;
-    /* Halve the circle */
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    /* Rotate the circle */
-    transform: rotate(-45deg);
-  }

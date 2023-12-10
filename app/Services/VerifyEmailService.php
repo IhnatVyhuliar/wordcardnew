@@ -27,7 +27,7 @@ class VerifyEmailService
         if(isset($this->user_id)&&isset($this->hash)){
             
             if($hash==$this->hash){
-                dd($hash);
+                //dd($hash);
                 if ($this->user->hasVerifiedEmail()) {
                     return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
                 }
@@ -36,6 +36,10 @@ class VerifyEmailService
                     event(new Verified($request->user()));
                 }
             }
+            
+        }
+        else{
+            return to_route('main');
         }
     }
 }
