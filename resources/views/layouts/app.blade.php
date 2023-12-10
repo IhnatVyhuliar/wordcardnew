@@ -7,7 +7,7 @@
 
         <title>{{ config('app.name', 'WordCard') }}</title>
         <meta name="robots" content="index, follow">
-        <meta name="keywords" content="wordcard, languages, flashcards, cards, studying, folders, flash, every, any, way to learn, learn, learning languages, english, polish, deutsch, german, ukrainian, chinese, korean, definition, translation">
+        <meta name="keywords" content="wordcard, languages, flashcards, words, card, word, card word, cards, studying, folders, flash, every, any, way to learn, learn, learning languages, english, polish, deutsch, german, ukrainian, chinese, korean, definition, translation">
         <meta name='author' content="Ihnat Vyhuliar">
         <meta name="description" content="Wordcard - your way to learn languages, flashcards and folders. Platform for studying every language">
         <!-- Fonts -->
