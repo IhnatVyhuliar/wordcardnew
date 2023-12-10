@@ -42,26 +42,29 @@ class SearchController extends Controller
             $folders=Folder::where('code', 'like', "%".$keyword."%")->orWhere('name', 'like', "%".$keyword."%")->where('status', 1)->select('name','code', 'id')->orderBy('created_at')->take(2)->get();
             //dd($folders);
             if(sizeof($folders)!=0){
-                $folder_query_name=$folders[0]->name;
-                $exist= Searchquery::where('query', "like", "%".$folder_query_name."%")->exists();
-                if ($exist){
-                    $query=Searchquery::where('query', "like", "%".$folder_query_name."%")-> first();
-                    if (intval($query->number+1)>=8388607){
-                        $query->number=intval($query->number);
-                        $query->update();
+                foreach ($folders as $folder){
+                    $folder_query_name=$folder->name;
+                    $exist= Searchquery::where('query', '=', $folder_query_name)->exists();
+                    if ($exist){
+                        $query=Searchquery::where('query', '=', $folder_query_name)-> first();
+                        if (intval($query->number+1)>=8388607){
+                            $query->number=intval($query->number);
+                            $query->update();
+                        }
+                        else{
+                            $query->number=intval($query->number+1);
+                            $query->update();
+                        }
+                        
                     }
                     else{
-                        $query->number=intval($query->number+1);
-                        $query->update();
+                        Searchquery::create([
+                            'query'=>$folder_query_name,
+                            'number'=>1
+                        ]);
+                    };
                     }
-                    
-                }
-                else{
-                    Searchquery::create([
-                        'query'=>$keyword,
-                        'number'=>1
-                    ]);
-                };
+                
                 
             }
             foreach($folders as $folder){
