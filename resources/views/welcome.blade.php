@@ -25,9 +25,13 @@
         <div class="flex space-x-3 mt-4 space-y-4 flex-wrap">
             <div class="element w-[50%] max-md:w-[90%]">
                 <h2 class="text-5xl">WordCard- your way to learn languages</h2>
+                <a href="{{route('search.index')}}">
+                    <button class="bg-violet-600 mt-20 text-white p-3 h-[70px]  w-[200px] rounded-lg max-sm:w-[95%]">Study</button>
+                </a>
+                
             </div>
 
-            <div class="element container w-[500px] h-[300px] border-4 border-gray-200 rounded-xl mt-4 ml-5 flex flex-col p-2 overflow-y-auto ">
+            <div class="element container  w-[500px] h-[300px] border-4 border-gray-200 rounded-xl mt-5 ml-5 flex flex-col p-2 overflow-y-auto max-lg:ml-0">
                 <div class="word flex justify-between">
                     <div class="word "> Success</div>
                     <div class="edit flex space-x-3">    

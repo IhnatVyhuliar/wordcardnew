@@ -24,8 +24,8 @@ class SearchController extends Controller
             return to_route('search.show', compact('keyword'));
         }
         else{
-            $keyword='';
-            return to_route('search.find', compact('keyword'));
+
+            return to_route('search.index');
         }
     }
 
@@ -81,6 +81,9 @@ class SearchController extends Controller
                 //$bool=DB::table('folder_followers')->where('folder_id',$folder->id)->where('user_id',auth()->id())->get();
                 //print_r(!(NULL==$bool));
             }
+        }
+        else{
+            return to_route('search.index');
         }       
         return $folders;
     }
