@@ -98,7 +98,7 @@
                 </div>
                 
                 <div class="flex justify-between mt-[50px]">
-                    <p id='demo_trans1' class="text-lg" >Languages is everything</p>   
+                    <p id='demo_trans1' class="text-lg" >Languages are everything</p>   
                     
                     
                 </div>
