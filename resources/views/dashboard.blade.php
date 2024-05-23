@@ -20,10 +20,9 @@
             <span class="text-xs">#{{strval($folder->code)}}</span>
         </div>
         <div class="favorite">
-            <form action="{{route('folder.favorite')}}" method="post">
+            <form action="{{route('folder.favorite', $folder->id)}}" method="post">
                 @csrf()
-                <input type="hidden" name="id" value="{{$folder->id}}">
-                <input type="hidden" name="page" value="dashboard">
+
                 <button type="submit">
                     @if($folder->favorite)
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Providers;
+namespace App\Services;
 
-use Illuminate\Support\ServiceProvider;
+
 use App\Models\Folder;
 
 use Illuminate\Support\Arr;
-use App\Http\Resources\CardsResource;
 use  App\Http\Controllers\Card\CardController;
 
-class FolderLearnServiceProvider
+class FolderLearnService
 {
     /**
      * Register services.
@@ -17,33 +16,29 @@ class FolderLearnServiceProvider
     private $folder_id;
     private $folder;
     private $user_id;
-    private $cur_card_num;
     private $cards_num;
 
-    public function setFolder($folder_id,$user_id=NULL){
-        //dd(Folder::where($this->folder_id)->exists());
+    public function setFolder(int $folder_id, $user_id = NULL){
+
         if(Folder::where($this->folder_id)->exists()){
         
             $this->folder_id = $folder_id;
-            //dd($this->folder_id);
-            //dd($folder_id);
+
             $this->user_id=$user_id;
             
             $this->folder=Folder::find($this->folder_id);
-            //dd($this->folder);
+
         }
         
     }
 
     public function getFolderId(){
-        //dd($this->folder);
         return $this->folder->id;
     }
 
     public function getAccess(){
         $access=false;
-        //dd($this->folder);
-        //dd($this->user_id);
+
         if($this->folder!=NULL){
             if($this->user_id){
                 $owner=$this->folder->user_id==$this->user_id;
@@ -53,7 +48,7 @@ class FolderLearnServiceProvider
                 }
                 
             }
-            //dd($this->cur_card_num);
+
             if($this->folder->status==1){
                 $access=true;
             }
@@ -90,10 +85,31 @@ class FolderLearnServiceProvider
            //dd($cards);
             return $cards;
         }
+    }
+
+    public function getShuffledCards(int $cur_card_num, int $cards_amount){
+
+        if($cards_amount<=$this->getCardsNum()&& $cur_card_num<=$cur_card_num){
+            $cards_arr = $this->folder->cards()->where('folder_id', $this->folder->id)->get();
+            $card = $cards_arr;
+
+            $cur_card=$card[$cur_card_num];
+            //dd($cur_card);
+            $cur_card_id=$cur_card['id'];
+
+            $cards['main']=$cur_card;
+            $cards_values=$this->getCardOptions($cur_card_id, $cards_amount);
+            $main_option=$cur_card->toArray();
+            array_push($cards_values, $main_option);
+            $cards_values=Arr::shuffle($cards_values);
+            $cards['values']=$cards_values;
+           //dd($cards);
+            return $cards;
+        }
         
 
     }
-    public function getCardOptions(int $cur_card_id,int $cards_options_amount){
+    public function getCardOptions(int $cur_card_id,int $cards_options_amount): array{
         $translation_options=$this->to_array($this->folder->cards()->select('translation')->where('folder_id', $this->folder->id)->where('id', '!=', $cur_card_id)->get());
         
         $arr_options=[];
@@ -131,8 +147,7 @@ class FolderLearnServiceProvider
     }
 
     protected function is_owner(){
-        // dd($folder->user_id==auth()->id());
-        //dd($this->folder->user_id==$this->user_id && $this->folder->user_id!=NULL);
-         return $this->folder->user_id==$this->user_id && $this->folder->user_id!=NULL;
+
+        return $this->folder->user_id==$this->user_id && $this->folder->user_id!=NULL;
      }
 }

@@ -10,6 +10,7 @@ use App\Models\Card;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\FolderStoreRequest;
+use App\Services\FolderService;
 use Storage;
 class FolderController extends Controller
 {
@@ -17,15 +18,14 @@ class FolderController extends Controller
      * Display a listing of the resource.
      */
     
-    public function getinfoByid($id){
-        
+    public function getinfoByid($id)
+    {
         $folders=Folder::where('user_id', $id)->get();
         return $folders;
         
     }
 
  
-
     /**
      * Show the form for creating a new resource.
      */
@@ -47,7 +47,7 @@ class FolderController extends Controller
         ]);
         Folder::create([
             'name'=>$request->name,
-            'code'=>$this->generateUniqueCode(),
+            'code'=>resolve('folder_service')->generateUniqueCode(),
             'user_id'=>auth()->id(),
             'favorite'=>0,
             'status'=>$request->status
@@ -59,45 +59,31 @@ class FolderController extends Controller
      * Display the specified resource.
      */
 
-     public function generateUniqueCode()
-    {
-        do {
-            $code = random_int(100000, 999999);
-        } while (Folder::where("code", "=", $code)->first());
-  
-        return $code;
-    }
+
     public function show(Folder $folder)
     {
-        // dd($folder->id);
-        $cards = $folder->cards()->where('folder_id', $folder->id)->get();
-        $folder['followers']=DB::table('folder_followers')->groupBy('folder_id')->count();
-        $folder_foll=DB::table('folder_followers')->where("folder_id",$folder->id)->get();
-        $folder['follow']=isset($folder_foll[0]->id);
-        //$changes=is_owner($folder);
-       // dd($folder[]);
-        $changes=$folder->user_id==auth()->id();
-        //dd($changes);
-        //dd($changes);
+
+        $cards = resolve('folder_service')->getCards($folder);
+        $folder['followers']=resolve('folder_service')->getFollowersCount($folder);
+        $folder['follow']=resolve('folder_service')->isFollowing($folder);
+        $changes=resolve('folder_service')->isOwner($folder);
+
         return view('app/folders/folders_cards', compact('folder','cards','changes'));
     }
 
     public function redirect_id(Request $id){
-        $id_folder=$id;
+        $id_folder = $id;
         return view('app/cards/create', compact('id_folder'));
     }
     /**
      * Show the form for editing the specified resource.
      */
 
-    protected function is_owner(Folder $folder){
-       // dd($folder->user_id==auth()->id());
-        return $folder->user_id==auth()->id();
-    }
-    public function edit(Folder $folder)
+
+    public function edit(Folder $folder, )
     {
-       // dd($folder->name);    
-       if (!$this->is_owner($folder)){
+
+       if (!resolve('folder_service')->isOwner($folder)){
         return to_route('search.index');
        }
        else{
@@ -111,7 +97,7 @@ class FolderController extends Controller
      */
     public function update(FolderStoreRequest $request, Folder $folder)
     {
-        if($this->is_owner($folder)){
+        if($this->resolve('folder_service')){
             $request->validated(); 
             $folder->name=$request->name;
             $folder->status=$request->status;
@@ -136,15 +122,8 @@ class FolderController extends Controller
 
     
 
-    public function Favorite(Request $request){
-
-        
-        $folder=Folder::findOrFail($request->id);
-        
-        //dd($request->page);
-       // dd($folder);
-       // dd($folder);
-        
+    public function Favorite(Folder $folder){
+        // dd($folder);
         if($folder->favorite){
             $folder->favorite=false;
         }
@@ -154,14 +133,7 @@ class FolderController extends Controller
         $folder->update();    
         //if($id->url)
         
-        if($request->page=='dashboard'){
-            return to_route('dashboard');
-        }
-        else if($request->page=='cards'){
-            /*$cards = $folder->cards()->where('folder_id', $folder->id)->get();
-            return view('app/folders/folders_cards', compact('folder','cards'));*/
-            return $this->show($folder);
-        }
+       return back();
         
     }
 

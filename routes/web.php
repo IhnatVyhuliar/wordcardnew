@@ -10,7 +10,7 @@ use App\Http\Controllers\Follow\FolderFollowerController;
 use App\Http\Controllers\Learn\ShowCardsController;
 use App\Http\Controllers\Learn\LearnController;
 use App\Http\Controllers\VerifyEmailCustomController;
-
+use App\Http\Controllers\Greece\StudyFlashController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +41,7 @@ Route::middleware('auth', 'user','verified' )->group(function () {
     Route::post('/cards.favorite', [CardController::class, 'Favorite'])->name('cards.favorite');
     Route::resource('/folders', FolderController::class);
     Route::resource('/cards', CardController::class);
-    Route::post('favorite.folder', [FolderController::class, 'Favorite'])->name('folder.favorite');
+    Route::post('/favorite.folder/{folder}', [FolderController::class, 'Favorite'])->name('folder.favorite');
     //Route::resource('/res', ReservationController::class);
 });
 
@@ -60,12 +60,20 @@ Route::name('search.')->prefix('search')->group(function () {
 
 
 Route::name('learn.')->prefix('learn')->group(function () {
-    Route::get('/{folder_id}', [ShowCardsController::class, 'Index'])->name('index');
-    Route::post('/flash', [ShowCardsController::class, 'Launch'])->name('launch');
-    Route::post('/checkAnswer', [ShowCardsController::class, 'CheckAnswer'])->name('check');
-    Route::post('/close', [ShowCardsController::class, 'Close'])->name('close');
-    Route::post('/next', [ShowCardsController::class, 'Proceed'])->name('proceed');
+    Route::get('/{folder}', [ShowCardsController::class, 'Index'])->name('index');
+    Route::middleware("post")->group(function() {
+        Route::post('/flash/{folder}', [ShowCardsController::class, 'Launch'])->name('launch');
+        Route::post('/checkAnswer', [ShowCardsController::class, 'CheckAnswer'])->name('check');
+        Route::post('/close/{folder}', [ShowCardsController::class, 'Close'])->name('close');
+        Route::post('/next', [ShowCardsController::class, 'Proceed'])->name('proceed');
+
+        
+    });
     //Route::resource('/res', ReservationController::class);
+});
+
+Route::name("study.")->prefix('study')->group(function(){
+    Route::post('/launch/{folder}', [StudyFlashController::class, 'Launch'])->name('launch');
 });
 
 Route::name('follow.')->middleware('auth', 'user','verified' )->prefix('follow')->group(function (){
@@ -85,7 +93,7 @@ Route::middleware('auth')->group(function () {
 
 Route::fallback(function () {
     /** This will check for the 404 view page unders /resources/views/errors/404 route */
-    //return view('welcome');
+    return view('welcome');
 });
 
 require __DIR__.'/auth.php';

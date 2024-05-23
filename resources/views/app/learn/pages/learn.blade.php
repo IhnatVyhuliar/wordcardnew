@@ -1,5 +1,7 @@
 @extends('layouts.mainlearn')
-
+@push('styles')
+    <link href="{{ asset('css/normilise.css') }}" rel="stylesheet">
+@endpush
 @section('learn_section')
 
     
@@ -12,24 +14,22 @@
             </div>
         </div>
         </div>
-        
+
         <div class="container top-2/4 flex flex-row flex-wrap flex-4 justify-start space-y-4 space-x-5 items-center overflow-x-hidden h-full">
             @foreach ($cards['values'] as $card)
                 
-                <div class="card lg:w-5/12 w-11/12 sm:w-full ml-5 p-5 sm:p-10 h-20 mt-4 bg-white border border-gray-200 rounded-lg shadow text-black dark:bg-gray-800 dark:border-gray-700 dark:text-white" >
-                    <form method="post" id="card_form" action="{{ route('learn.check') }}">
-                            @csrf
-                            <input type="hidden" name="folder_id" type="number" value="{{$cards['main']->folder_id}}">
-                            <input type="hidden" name="value"  value="{{$card['translation']}}">
-                            <input type="hidden" name="main_card_id" type="number" value="{{$cards['main']->id}}">
-                            <button type="submit">
-                                {{$card['translation']}}
-                            </button>
-                        
-                    </form>
-                    
-                </div>
-            
+                    <div class="card  w-11/12 lg:w-5/12 sm:w-full ml-5 p-5 sm:p-10 h-20 mt-4 bg-white border border-gray-200 rounded-lg shadow text-black dark:bg-gray-800 dark:border-gray-700 dark:text-white" >
+                        <form method="post" id="card_form" action="{{ route('learn.check') }}" class="isolate">
+                        @csrf
+                        <input type="hidden" name="folder_id" type="number" value="{{$cards['main']->folder_id}}">
+                        <input type="hidden" name="value"  value="{{$card['translation']}}">
+                        <input type="hidden" name="main_card_id" type="number" value="{{$cards['main']->id}}">
+                        <button type="submit">
+                            {{$card['translation']}}
+                        </button>
+                        </form>    
+                    </div>
+                
             @endforeach
         </div>
     </div>

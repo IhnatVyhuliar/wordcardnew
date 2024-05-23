@@ -9,10 +9,16 @@
         </div>
         
 
+        @if($percentage >= 75)
+            <p>Great job</p>
+        @elseif($percentage >= 50)
+            <p>Not bad</p>
+        @else
+            <p>Could be better</p>
+        @endif
        
-       <p>Great job</p>
         <p>{{$counts}} out of {{$number}}</p>
     </div>
     
 
-    @endsection
+@endsection

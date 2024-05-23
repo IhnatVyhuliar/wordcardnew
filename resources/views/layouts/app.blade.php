@@ -12,7 +12,7 @@
         <meta name="description" content="Platform for studying every language">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-
+        @stack('styles')
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />    
         <link rel="shortcut icon" href="{{Storage::url('public/cards/wordcard.png')}}">
         <!-- Scripts -->

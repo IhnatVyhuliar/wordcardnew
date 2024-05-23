@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Learn;
+namespace App\Http\Controllers\Greece;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Folder;
+
+
 use App\Http\Requests\LaunchShowCardsRequest;
 use App\Helpers\CacheHelper;
 use App\Http\Requests\CheckAnswerRequest;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Folder;
 
-
-class ShowCardsController extends Controller
+class StudyFlashController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
+    
     private $folder_id;
     private $folder;
     private $folder_service;
@@ -25,7 +24,7 @@ class ShowCardsController extends Controller
     
     public function Index(Folder $folder)
     {
-
+        
         CacheHelper::Close();
         //dd($folder);
         if(isset($folder->id)){
@@ -49,8 +48,8 @@ class ShowCardsController extends Controller
             if ($num_cards%2!=0){
                 $num_cards-=1;
             }
-            
-            return view('app.learn.pages.index', compact('num_cards','folder_id'));
+            // view("app/learn/study/cards");
+            return view("app/learn/study/cards", compact('num_cards','folder_id'));
         }
         return back();
     }
@@ -72,17 +71,19 @@ class ShowCardsController extends Controller
         }
 
         $getaccess=$learn_service->getAccess();
-
+        
         if($getaccess){
             CacheHelper::storeCache('cur_card', 0);
             //dd(CacheHelper::getVariable('cur_card'));
             //dd($request->number);
+            
             CacheHelper::storeCache('number',$request->number);
             CacheHelper::storeCache('folder_id', $folder->id);
             CacheHelper::storeCache('type', intval($request->type));
             //dd($request->type);
             return $this->Handle($request->type, $request->number, $folder->id);
         }
+        
         return back();
     }
 
@@ -127,8 +128,10 @@ class ShowCardsController extends Controller
     }
 
     private function Handle(int $type, int $cards_amount, int $folder_id){
-        if($type == 1&& $folder_id){
+        
+        if($type == 2 && $folder_id){
             $learn_service=app('learn_service');
+            
             $learn_service->setfolder(intval($folder_id));
             $cur_card=0;
             
@@ -137,70 +140,24 @@ class ShowCardsController extends Controller
                 //dd($cur_card);
             }
             
-
-
-            $cards=$this->Render($cur_card,$cards_amount, $folder_id);
+            $cards = $this->Render($cur_card,$cards_amount, $folder_id);
 
             if(CacheHelper::getVariable('cards')){
                 CacheHelper::forget('cards');
             }
-    
+           
             CacheHelper::storeCache('cards', $cards);
-            
-            
             //dd(CacheHelper::getVariable('cur_card'));
-            return view('app.learn.pages.learn', compact('cards'));
+            return view('app.learn.study.cards', compact('cards'));
         }
-        
-   }
+    
+    }
     private function Render(int $cur_card_num, int $cards_amount,  $folder_id){
         $learn_service=resolve('learn_service');
         $learn_service->setfolder($folder_id);
-        $cards=resolve("compose_card_controller")->getCardArray($cur_card_num, $cards_amount,$learn_service);
+        
+        $cards=resolve("compose_card_controller")->getShuffledCardArray($cur_card_num, $cards_amount,$learn_service);
+        
         return $cards;
-
-   }
-
-    public function CheckAnswer(CheckAnswerRequest $request){
-        $request->validated();
-        $learn_service=resolve('learn_service');
-        if (Auth::user()){
-            $learn_service->setfolder($request->folder_id, Auth::user()->id);
-        }
-        else{
-            $learn_service->setfolder($request->folder_id);
-        }
-        //dd(Auth::user()->id); 
-        $cards=CacheHelper::getVariable('cards');
-        //dd($cards);
-        $cur_card=CacheHelper::getVariable('cur_card');
-        
-        if($cards){
-            $result = $learn_service->CheckAnswer($request->main_card_id, $request->value, $request->folder_id);
-            $result_check=[$cur_card=>$result['success']];
-            $result_percent=CacheHelper::getVariable('check_answer');
-            if ($result_percent){
-                $result_percent=CacheHelper::getVariable('check_answer');
-                CacheHelper::forget('check_answer');
-                $result_percent[$cur_card]=$result['success'];
-            }
-            else{
-                $result_percent = $result_check;
-            }
-            CacheHelper::storeCache('check_answer', $result_percent);
-
-            return view('app.learn.pages.learn', compact('cards', 'result'));
-        }
-        
-    }
-
-    public function Close(Folder $folder){
-        CacheHelper::Close();
-        if (Auth::user()){
-            return resolve("folder_controller")->show($folder);
-        }
-        else{
-            return redirect()->route('search.find', ['keyword' => $folder->name]);
-        }
     }
 }
