@@ -12,6 +12,11 @@
             return $folder->user_id==auth()->id();
         }
 
+        public function checkDoesExists(int $folder_id)
+        {
+            return (bool) Folder::find($folder_id);
+        }
+
         public function getCards(Folder $folder)
         {
             return $folder->cards()->where('folder_id', $folder->id)->get();

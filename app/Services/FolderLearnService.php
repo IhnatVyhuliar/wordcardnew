@@ -145,7 +145,7 @@ class FolderLearnService
 
         }
     }
-
+    
     protected function is_owner(){
 
         return $this->folder->user_id==$this->user_id && $this->folder->user_id!=NULL;

@@ -50,7 +50,7 @@ Route::name('search.')->prefix('search')->group(function () {
     Route::get('/find', [SearchController::class, 'FindFolders'])->name('find');
     Route::get('/find/{keyword}', [SearchController::class, 'ShowFolders'])->name('show');
     
-    Route::middleware('auth', 'user','verified' )->post('follow', [FolderFollowerController::class, 'Follower'])->name('follow');
+    Route::middleware('auth', 'user','verified' )->post('follow', [FolderFollowerController::class, 'FollowAndUnfollowFolder'])->name('follow');
     
    
     //Route::resource('/res', ReservationController::class);

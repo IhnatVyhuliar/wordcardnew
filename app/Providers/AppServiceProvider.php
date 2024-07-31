@@ -10,8 +10,10 @@ use Illuminate\Contracts\Foundation\Application;
 use App\Services\VerifyEmailService;
 use App\Services\FolderLearnService;
 use App\Services\FolderService;
+use App\Services\FollowerManageService;
 use App\Http\Controllers\Learn\ComposeCardController;
 use App\Http\Controllers\Folder\FolderController;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -31,7 +33,9 @@ class AppServiceProvider extends ServiceProvider
             return new FolderController();
         });
 
-
+        $this->app->bind("folder_manage_service"::class, function($app){
+            return new FollowerManageService();
+        });
         $this->app->bind('compose_card_controller', function($app){
             return new ComposeCardController();
         });
