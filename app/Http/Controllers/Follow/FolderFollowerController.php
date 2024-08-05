@@ -17,7 +17,10 @@ class FolderFollowerController extends Controller
             'folder_id' => ['required']
         ]);
 
-        $this->ToggleSubscriptionToFolder($request->folder_id, $request->user()->id);
+        $this->ToggleSubscriptionToFolder(
+        $request->folder_id,
+        $request->user()->id
+        );
 
         return back();
     }
