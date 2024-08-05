@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Follow;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Folder_follower;
 
 use App\Models\Folder;
 use Illuminate\Support\Facades\Auth;
