@@ -97,14 +97,11 @@ class FolderController extends Controller
      */
     public function update(FolderStoreRequest $request, Folder $folder)
     {
-        if($this->resolve('folder_service')){
-            $request->validated(); 
-            $folder->name=$request->name;
-            $folder->status=$request->status;
-            $folder->update();
-            
-        }
-        
+
+        $request->validated(); 
+        $folder->name=$request->name;
+        $folder->status=$request->status;
+        $folder->update();
         
         return to_route('dashboard');
     }
