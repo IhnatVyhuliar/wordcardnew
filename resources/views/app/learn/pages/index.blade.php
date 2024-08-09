@@ -8,11 +8,7 @@
     </div>
     
     <div class="container flex justify-center flex-wrap ">
-
         <div class="max-w-sm p-6 mt-6 mr-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
-            
-            
             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Test your skills</h5>
             
             <p class="mb-3 text-base font-normal text-gray-500 dark:text-gray-400">Number of cards </p>
@@ -31,7 +27,7 @@
                 <button type="submit" class="text-white bg-violet-600 focus:ring-4 hover:bg-violet-800 focus:ring-violet-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Start</button>    
             </form>
         </div>
-        <div class="max-w-sm p-6 mt-6 mr-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        {{-- <div class="max-w-sm p-6 mt-6 mr-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
             
             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Learn your cards</h5>
@@ -51,7 +47,7 @@
 
                 <button type="submit" class="text-white bg-violet-600 focus:ring-4 hover:bg-violet-800 focus:ring-violet-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Start</button>    
             </form>
-        </div>
+        </div> --}}
        
         
     </div>

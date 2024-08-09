@@ -16,6 +16,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />    
     <link rel="shortcut icon" href="{{Storage::url('public/cards/wordcard.png')}}">
     <title>WordCard</title>
+    @vite(['resources/css/dashboard.css', 'resources/css/card__element.css',  'resources/js/app.js'])
 </head>
 
 <body>
@@ -31,14 +32,11 @@
                 
             </div>
 
-            <div class="element container  w-[500px] h-[300px] border-4 border-gray-200 rounded-xl mt-5 ml-5 flex flex-col p-2 overflow-y-auto max-lg:ml-0">
+            <div class="element welcome__flashcard">
                 <div class="word flex justify-between">
                     <div class="word "> Success</div>
                     <div class="edit flex space-x-3">    
                         <div class="favorite">
-
-                                    <input type="hidden" name="id" value="1">
-                                    <input type="hidden" name="folder_id" value="1">
                                     <input type="hidden" name="page" value="cards">
                                     <button type="submit">
 
@@ -47,11 +45,7 @@
                                             </svg>
                                         
                                         
-                                    </button>
-
-        
-                            
-                                
+                                    </button>                    
                         </div>
                        
                         <div class="edit">
@@ -64,9 +58,6 @@
         
                     </div>
                         
-        
-                  
-
                         <div class="delete ">
                           
                                 <button type="submit">
@@ -79,38 +70,54 @@
                                 </button>
 
                         </div>
-
-                    
-                    
-        
                 </div>
                 </div>
-               
-                
                 <div class="word flex justify-end">
                     <img src="{{Storage::url('public/cards/mainlogo.png')}}"  class="w-40 h-18 rounded mt-2">
                 </div>
                 
                 <div class="flex mt-[25px]">
                     <p id='demo_def1' class="text-lg"  >WordCard</p>     
-                    
-                    
                 </div>
-                
                 <div class="flex justify-between mt-[50px]">
                     <p id='demo_trans1' class="text-lg" >Languages are everything</p>   
-                    
-                    
                 </div>
                 <div class="flex justify-end items-end mt-[30px]">
                     <span>100%</span>
                 </div>
         
             </div>
-            
+        
+            <div class="welcome__description__wrapper">
+                <div class="welcome__description__element">
+                    <div class="welcome_description_text_wrapper">
+                        <p>The most effective way to learn languages</p>
+                    </div>
+                    <div class="welcome__description__border">
+                    </div>
+                </div>
+                <div class="welcome__description__element">
+                    <div class="welcome_description_text_wrapper">
+                        <p>Flashcards</p>
+                    </div>
+                    <div class="welcome__description__border">
+
+                    </div>
+                </div>
+                <div class="welcome__description__element welcome__description__last__element">
+                    <div class="welcome_description_text_wrapper">
+                        <p>Create, edit, learn your cards in folder</p>
+                    </div>
+                    
+                    <div class="welcome__description__border hidden__border">
+
+                    </div>
+                </div>
+                
+            </div>
            </div>
         
-        
+        </div>
     </div>
 </body>
 </html>

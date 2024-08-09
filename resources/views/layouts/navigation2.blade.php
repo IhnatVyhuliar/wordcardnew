@@ -22,22 +22,21 @@
             </a>
 
             <!-- Menu links here -->
-            <ul id="menu" class="hidden fixed top-0 right-0 px-10 py-16  z-50
+            <ul id="menu" class="hidden fixed top-0 right-0 px-10 py-16  z-50 
                 md:relative md:flex md:p-0 md:bg-transparent text-black bg-gray-700 md:flex-row md:space-x-6">
 
                 <li class="md:hidden z-90 fixed top-4 right-6">
                     <a href="javascript:void(0)" class="text-right text-black text-4xl"
                         onclick="toggleMenu()">&times;</a>
                 </li>
-
                 <li>
-                    <a class=" text-black  max-md:text-white opacity-80 text-lg hover:opacity-100 duration-300" href="{{route('login')}}">Login</a>
+                    <a class="text-black  max-md:text-white opacity-80 text-lg hover:opacity-100 duration-300" href="{{route('login')}}">Login</a>
                 </li>
                 <li>
-                    <a class=" text-black  max-md:text-white text-lg opacity-80 hover:opacity-100 duration-300" href="{{route('register')}}">Register</a>
+                    <a class="text-black  max-md:text-white text-lg opacity-80 hover:opacity-100 duration-300" href="{{route('register')}}">Register</a>
                 </li>
                 <li>
-                    <a class="  text-black max-md:text-white text-lg opacity-80 hover:opacity-100 duration-300" href="{{route('search.index')}}">Search</a>
+                    <a class="text-black max-md:text-white text-lg opacity-80 hover:opacity-100 duration-300" href="{{route('search.index')}}">Search</a>
                 </li>
                 </li>
             </ul>
@@ -61,8 +60,6 @@
             menu.classList.toggle('hidden');
             menu.classList.toggle('w-full');
             menu.classList.toggle('h-screen');
-            
-           
         }
     </script>
 </body>

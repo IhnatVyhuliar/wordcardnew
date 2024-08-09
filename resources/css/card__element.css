@@ -1,0 +1,23 @@
+/* element container  w-[500px] h-[300px] 
+border-4 border-gray-200 rounded-xl 
+mt-5 ml-5 flex flex-col p-2 
+overflow-y-auto max-lg:ml-0*/
+/* w-60  h-52 max-h-52 border-4 border-gray-200 rounded-xl mt-4 ml-5 flex flex-col p-2 overflow-y-auto*/
+.welcome__flashcard{
+    width: 500px;
+    height: 300px;
+    border: 4px solid #d1d5db; /* Equivalent to border-gray-200 */
+    border-radius: 0.75rem; /* Equivalent to rounded-xl */
+    margin-top: 1.25rem; /* Equivalent to mt-5 */
+    border-width: 4px;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem; /* Equivalent to p-2 */
+    overflow-y: auto;
+}
+
+@media (max-width: 1024px) {
+    .welcome__flashcard {
+      margin-left: 0; /* Equivalent to max-lg:ml-0 */
+    }
+  }
