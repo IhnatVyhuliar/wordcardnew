@@ -12,7 +12,7 @@
     height: 400px;
     display: flex;
     justify-content: center;
-    z-index: 0;
+    z-index: -1;
     background-color: #7c3aed;
     border-radius: 0.375rem;
     opacity: .7;

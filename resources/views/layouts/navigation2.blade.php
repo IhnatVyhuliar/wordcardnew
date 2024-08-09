@@ -22,7 +22,7 @@
             </a>
 
             <!-- Menu links here -->
-            <ul id="menu" class="hidden fixed top-0 right-0 px-10 py-16  z-50 
+            <ul id="menu" class="hidden fixed top-0 right-0 px-10 py-16  z-50  flex  flex-col gap-8 text-3xl
                 md:relative md:flex md:p-0 md:bg-transparent text-black bg-gray-700 md:flex-row md:space-x-6">
 
                 <li class="md:hidden z-90 fixed top-4 right-6">
